@@ -7,6 +7,20 @@ Berikut adalah tata cara penjelasan pembuatan file dengan implementasi menggunak
 
 Repositori ini berisi lima file yang dikembangkan menggunakan Rust untuk berbagai implementasi algoritma dan satu file yang mengintegrasikan Rust dengan Qt untuk antarmuka grafis.
 
+# Tata Cara Pembuatan File 
+
+Data Sets : https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset
+
+Pregnancies: To express the Number of pregnancies
+Glucose: To express the Glucose level in blood
+BloodPressure: To express the Blood pressure measurement
+SkinThickness: To express the thickness of the skin
+Insulin: To express the Insulin level in blood
+BMI: To express the Body mass index
+DiabetesPedigreeFunction: To express the Diabetes percentage
+Age: To express the age
+Outcome: To express the final result 1 is Yes and 0 is No
+
 ## Tata Cara Pembuatan File 
 
 1. **deret_taylor.rs**  
