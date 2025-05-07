@@ -1,3 +1,5 @@
+ **prediksi diabetes**
+
 Kelompok: Kelompok 4 Prediksi Diabetes 
 Supervisor: Ahmad Radhy, S.Si., M.Si 
 Departemen dan Institut: Teknik Instrumentasi, Institut Teknologi Sepuluh Nopember 
