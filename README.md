@@ -1,59 +1,72 @@
-# Rekayasa_Teknologi_Cerdas
+Kelompok: Kelompok 4 Prediksi Diabetes 
+Supervisor: Ahmad Radhy, S.Si., M.Si 
+Departemen dan Institut: Teknik Instrumentasi, Institut Teknologi Sepuluh Nopember 
 
-Berikut adalah tata cara penjelasan pembuatan file dengan implementasi menggunakan Rust dan Qt:
+Anggota Kelompok :
+1. Achmad Fernanda Pramudya Wardhana
+2. Meysa Dwidianti
+3. Muhammad Zidane Abri Fadhillah Husain
 
+**Description Proyek**
+Description Proyek ini terdiri dari beberapa modul berbasis Rust yang digunakan untuk melakukan prediksi diabetes pada cabai berdasarkan beberapa parameter diabetes menggunakan algoritma Neural Network, SVM, dan k-Nearest Neighbor (kNN). Beberapa modul terintegrasi dengan Qt sebagai interface.
 
-# Proyek Rust untuk Algoritma dan Antarmuka
+**Dataset**
+Dataset diambil dari kaggle https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset
 
-Repositori ini berisi lima file yang dikembangkan menggunakan Rust untuk berbagai implementasi algoritma dan satu file yang mengintegrasikan Rust dengan Qt untuk antarmuka grafis.
+**Struktur Proyek**
+Struktur Proyek lookupTable/: Program lookup sederhana untuk konversi nilai. deret taylor/: Proyek perhitungan nilai sudut sinus dan cosinus. svmnkn/: Program prediksi diabetes menggunakan SVM dan kNN. Hasil prediksi divisualisasi dalam .png. nnqt/: Neural Network + integrasi Qt GUI. Meliputi pelatihan model, simpan model (model.bin), dan prediksi.
 
-# Tata Cara Pembuatan File 
+**Cara Menjalankan Proyek Rust** 
 
-Data Sets : https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset
+**1. Deret Taylor**
+Download file ZIP berjudul taylor.zip.
+Buka terminal di folder hasil extract.
+Jalankan perintah: code . File > Open Folder > Pilih folder hasil extract
+Jalankan program: cargo build -> cargo run
 
--   Pregnancies: To express the Number of pregnancies
--   Glucose: To express the Glucose level in blood
--   BloodPressure: To express the Blood pressure measurement
--   SkinThickness: To express the thickness of the skin
--   Insulin: To express the Insulin level in blood
--   BMI: To express the Body mass index
--   DiabetesPedigreeFunction: To express the Diabetes percentage
--   Age: To express the age
--   Outcome: To express the final result 1 is Yes and 0 is No
+**2. Lookup Table**
+Download file ZIP berjudul lookuptable.zip.
+Simpan dan extract
+Buka terminal di folder hasil extract.
+Jalankan perintah: code . File > Open Folder > Pilih folder hasil extract
+Jalankan program: cargo build -> cargo run
 
-## Tata Cara Pembuatan File 
+**3. SVM-KNN**
 
-1. **deret_taylor.rs**  
-   File ini berisi implementasi Deret Taylor dalam Rust untuk menghitung aproksimasi fungsi matematis seperti sin(x) atau cos(x) menggunakan deret tak hingga.  
-   - **Langkah Pembuatan**: Tulis kode Rust untuk menghitung Deret Taylor, uji dengan input berbeda, dan simpan sebagai `deret_taylor.rs`.  
-   - **Dependensi**: Pastikan Rust dan Cargo terinstal.  
-   - **Cara Jalankan**: Kompilasi dengan `cargo run --release --bin deret_taylor`.
+Download file ZIP berjudul svmknn.zip.
+Simpan dan extract
+Buka terminal di folder hasil extract.
+Jalankan: code . File > Open Folder > Pilih folder hasil extract
+Jalankan program dari terminal: cargo build -> cargo run
 
-2. **lookup_table.rs**  
-   File ini mengimplementasikan tabel pencarian (lookup table) dalam Rust untuk menyimpan dan mengakses data pra-dihitung secara efisien.  
-   - **Langkah Pembuatan**: Buat struktur data untuk tabel, isi dengan nilai awal, dan tambahkan fungsi pencarian, simpan sebagai `lookup_table.rs`.  
-   - **Dependensi**: Rust dan Cargo.  
-   - **Cara Jalankan**: Kompilasi dengan `cargo run --release --bin lookup_table`.
+**4. Neural Network + Frontend QT (nnqt) Step Organize the Project Files**
+Create the Project Directory: mkdir soilqt -> cd soilqt
+Set Up the Rust Backend: cargo new soilqt -> cd soilqt
+Edit the Cargo.toml file to match the provided file
+Create the source files in the src directory: touch src/main.rs - touch srcmodel.rs - touch srcdata.rs - touch srcutils.rs
+Set Up the Python Frontend: touch qt.py
 
-3. **svm_knn_diabetes.rs**  
-   File ini menggabungkan algoritma SVM dan KNN dalam Rust untuk klasifikasi dataset diabetes.  
-   - **Langkah Pembuatan**: Implementasikan logika SVM dan KNN, integrasikan dengan library Rust seperti `linfa`, dan simpan sebagai `svm_knn_diabetes.rs`.  
-   - **Dependensi**: Tambahkan `linfa` dan `ndarray` di `Cargo.toml`.  
-   - **Cara Jalankan**: Kompilasi dengan `cargo run --release --bin svm_knn_diabetes`.
+**Prepare a Sample CSV File:**
+The program expects a CSV file with at least 5 columns: 4 features (e.g., temperature, humidity, pH, moisture) and 1 label (0 or 1 for soil fertility).
+Create a sample CSV file named soil_data.csv in the soilqt_project directory:
+Step Build the Rust Backend
 
-4. **NN_diabetes.rs**  
-   File ini berisi implementasi Neural Network dalam Rust untuk prediksi diabetes berdasarkan dataset.  
-   - **Langkah Pembuatan**: Gunakan library seperti `tch-rs` untuk jaringan saraf, latih model dengan data diabetes, dan simpan sebagai `NN_diabetes.rs`.  
-   - **Dependensi**: Instal `tch-rs` dan tambahkan ke `Cargo.toml`.  
-   - **Cara Jalankan**: Kompilasi dengan `cargo run --release --bin NN_diabetes`.
+**Navigate to the Rust Project Directory: cd soilqt**
+Build the Rust Binary in Release Mode: The Python frontend expects the compiled binary at ./target/release/soilqt. Run: cargo build --release
+Verify the Build: Ensure the binary exists: ls target/release/soilqt Test the binary with a training command (optional): ./target/release/soilqt --train ../soil_data.csv 100 0.01 This should load the CSV, train the model, and generate model.bin, scaler.bin, results.json, and plots in the output directory.
+Step Run the Python GUI
 
-5. **Qt_Rust.rs**  
-   File ini mengintegrasikan Rust dengan Qt menggunakan `qt.py` untuk membangun antarmuka grafis.  
-   - **Langkah Pembuatan**: Instal `qt.py`, tulis kode Rust untuk logika, hubungkan dengan antarmuka Qt, dan simpan sebagai `Qt_Rust.rs`.  
-   - **Dependensi**: Rust, Cargo, dan `qt.py` (pastikan Python dan PyQt terinstal).  
-   - **Cara Jalankan**: Kompilasi Rust dengan `cargo build`, lalu jalankan dengan `python -m qt.py Qt_Rust.rs`.
+**Ensure the Rust Binary Exists:** 
+The Python script (qt.py) calls the Rust binary (./target/release/soilqt) for training and prediction. Ensure the binary is built (from Step 3). 2.If using a virtual environment, activate it first: source venv/bin/activate
 
-## Persyaratan
-- Instal Rust: `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`.
-- Instal dependensi tambahan sesuai file di `Cargo.toml`.
-- Pastikan Python dan PyQt terinstal untuk `Qt_Rust.rs`.
+**Run the Python Script:** 
+In the soilqt_project directory, run: python3 qt.py This should launch the PyQt5 GUI window titled "Soil Fertility Predictor".
+Interact with the GUI: Load CSV: Click "Browse" to select soil_data.csv or enter its path manually. Click "Load Data". The status bar should update to show the number of data points loaded (e.g., "Status: Loaded 5 points"). Train the Model: Set "Epochs" (e.g., 1000) and "Learning Rate" (e.g., 0.001). Click "Train Model". The GUI will display training progress (epoch, loss, accuracy) and update the plot in real-time. After training, the status bar will show validation and test accuracy, and the table will display predictions for 5 random test points. Make Manual Predictions: Enter values for Temperature, Humidity, Soil pH, and Moisture (e.g., 25.0, 60.0, 6.5, 30.0). Click "Predict". The result will appear next to the button (e.g., "Prediction: Fertile (Probability: 0.750)"). Handle Errors: If you try to predict without training, the GUI will show an error: "Train a model first to generate model.bin and scaler.bin!". Invalid inputs (e.g., non-numeric values) will trigger appropriate error messages.
+
+**Persyaratan**
+- Instal Rust: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh.
+- Instal dependensi tambahan sesuai file di Cargo.toml.
+- Pastikan Python dan PyQt terinstal untuk Qt_Rust.rs.
+- Install System Dependencies : sudo apt install libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 qt5-default Note: If qt5-default is unavailable (e.g., Ubuntu 20.04+), install: sudo apt install libqt5widgets5 libqt5gui5 libqt5core5a
+- Install Python Dependencies : pip3 install pyqt5 matplotlib numpy
+- Optional: Use a virtual environment to avoid conflicts: python3 -m venv venv source venv/bin/activate pip install pyqt5 matplotlib numpy
